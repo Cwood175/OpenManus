@@ -1,6 +1,5 @@
 from app.tool.chart_visualization.python_execute import NormalPythonExecute
-from typing import ClassVar
-from pathlib import Path
+
 
 class GenerateInitialReport(NormalPythonExecute):
     """A tool for generating initial data analysis reports based on the report template and user's input data"""
@@ -18,7 +17,7 @@ class GenerateInitialReport(NormalPythonExecute):
         "properties": {
             "code": {
                 "type": "string",
-                "description": f"""Python code for generating initial HTML data report based on the report template and user's input data.
+                "description": """Python code for generating initial HTML data report based on the report template and user's input data.
 
 ## Output Requirements
 1. Generate initial_report.html file

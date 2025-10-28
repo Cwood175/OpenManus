@@ -1,13 +1,12 @@
-import sys
 import asyncio
 import json
 import os
+import sys
 print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 
 from typing import Any, Hashable
 
-import pandas as pd
 from pydantic import Field, model_validator
 
 from app.config import config
@@ -41,8 +40,8 @@ Contains chart insights data in format:
                 "description": "Visualization output format selection",
                 "default": "html",
                 "enum": [
-                    "png",    # Static image format
-                    "html"    # Interactive web format (recommended)
+                    "png",  # Static image format
+                    "html",  # Interactive web format (recommended)
                 ],
             },
         },
@@ -154,7 +153,9 @@ Contains chart insights data in format:
         )
         if len(error_list) > 0:
             return {
-                "observation": f"# Error in chart insights:{'\n'.join(error_list)}\n{success_template}",
+                "observation": (
+                    f"# Error in chart insights:{'\n'.join(error_list)}\n{success_template}"
+                ),
                 "success": False,
             }
         else:
