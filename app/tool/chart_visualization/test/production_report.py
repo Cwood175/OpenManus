@@ -1,10 +1,23 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-from app.agent.data_analysis import DataAnalysis
+
 from app.agent.manus import Manus
+
+print(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
 
 
 # from app.agent.manus import Manus
@@ -14,8 +27,8 @@ async def main():
     # agent = DataAnalysis()
     agent = Manus()
     await agent.run(
-"""Requirement: Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
-Table1: 销售区域基本信息​
+        """Requirement: Analyze the following data and generate a graphical data report in HTML format. The final product should be a data report.
+Table1: 销售区域基本信息\u200b
 RegionCode,RegionName,Description
 SW,西南,西南地区销售数据
 NE,东北,东北地区销售数据
@@ -24,7 +37,7 @@ N,华北,华北地区销售数据
 E,华东,华东地区销售数据
 NW,西北,西北地区销售数据
 
-Table2: 每日销售数据明细​
+Table2: 每日销售数据明细\u200b
 OrderDate,RegionCode,SalesAmount,DataQuality
 2023-04-01,SW,25860.24,正常
 2023-04-01,NE,5877.65,正常
@@ -103,7 +116,7 @@ OrderDate,RegionCode,SalesAmount,DataQuality
 2023-04-25,C,10678.08,正常
 2023-04-25,E,44791.10,正常
 
-Table3: 销售指标分析参考​
+Table3: 销售指标分析参考\u200b
 Category,SubCategory,Range,Level,Description
 销售金额,日销售额,>50000,优秀,单日销售额超过5万
 销售金额,日销售额,20000-50000,良好,单日销售额2-5万
