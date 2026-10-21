@@ -1,8 +1,22 @@
 import asyncio
 import os
 import sys
-print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
+
+
+print(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        )
+    )
+)
 from app.agent.data_analysis import DataAnalysis
 from app.logger import logger
 
@@ -11,8 +25,7 @@ prefix = "Help me generate charts and save them locally, specifically:"
 tasks = [
     {
         "prompt": "Help me show the daily sales performance metrics over time. ",
-        "data":
-            """Table: 每日销售数据明细​
+        "data": """Table: 每日销售数据明细​
             OrderDate,RegionCode,SalesAmount,DataQuality
             2023-04-01,SW,25860.24,正常
             2023-04-01,NE,5877.65,正常
@@ -89,7 +102,7 @@ tasks = [
             2023-04-24,E,41413.82,正常
             2023-04-24,C,723.24,正常
             2023-04-25,C,10678.08,正常
-            2023-04-25,E,44791.10,正常"""
+            2023-04-25,E,44791.10,正常""",
     }
 ]
 
@@ -98,9 +111,8 @@ async def main():
     for index, item in enumerate(tasks):
         logger.info(f"Begin task {index} / {len(tasks)}!")
         agent = DataAnalysis()
-        await agent.run(
-            f"{prefix},chart_description:{item['prompt']},Data:{item['data']}"
-        )
+        message = f"{prefix},chart_description:{item['prompt']}," f"Data:{item['data']}"
+        await agent.run(message)
         logger.info(f"Finish with {item['prompt']}")
 
 
